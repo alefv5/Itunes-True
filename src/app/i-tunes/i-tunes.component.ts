@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ITunesService } from '../services/i-tunes.service';
 
 @Component({
   selector: 'app-i-tunes',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ITunesComponent implements OnInit {
 
-  constructor() { }
+  name!: string;
+  constructor(private ItunesService : ITunesService) {
+    
+   }
 
   ngOnInit(): void {
+  }
+  search(){
+    this.name = this.name.replace(" ", "+")
+    this.ItunesService.getArtist(this.name).subscribe(data => {
+      console.log(data)
+    })
   }
 
 }
