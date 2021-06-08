@@ -1,11 +1,11 @@
 <h1 class="StyleTittle">iTunes Store</h1>
 <input type ="text" class = "StyleTextInput" [(ngModel)]="name">
-<select class="StyleSelect">
-  <option>All</option>
-  <option>Movie</option>
-  <option>Podcast</option>
-  <option>Music</option>
-  <option>Music Video</option>
-  <option>Audio Book</option>
+<select class="StyleSelect" [(ngModel)]="mediaType">
+  <option>all</option>
+  <option>movie</option>
+  <option>podcast</option>
+  <option>music</option>
+  <option>musicVideo</option>
+  <option>audiobook</option>
 </select>
-<button (click)="search()">Search</button>
+<button (click)="search()" class="StyleButton">Search</button>

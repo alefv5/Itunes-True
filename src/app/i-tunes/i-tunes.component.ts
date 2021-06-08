@@ -9,6 +9,7 @@ import { ITunesService } from '../services/i-tunes.service';
 export class ITunesComponent implements OnInit {
 
   name!: string;
+  mediaType!: string;
   constructor(private ItunesService : ITunesService) {
     
    }
@@ -16,10 +17,12 @@ export class ITunesComponent implements OnInit {
   ngOnInit(): void {
   }
   search(){
-    this.name = this.name.replace(" ", "+")
-    this.ItunesService.getArtist(this.name).subscribe(data => {
+    let term;
+    console.log(this.mediaType);
+    term = this.name.replace(" ", "+");
+    this.ItunesService.getArtist(term,this.mediaType).subscribe(data => {
       console.log(data)
-    })
+    });
   }
 
 }
