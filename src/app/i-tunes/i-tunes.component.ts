@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Card } from '../models/card';
 import { ITunesService } from '../services/i-tunes.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class ITunesComponent implements OnInit {
 
   name!: string;
   mediaType!: string;
+  results: Array<Card> = new Array();
   constructor(private ItunesService : ITunesService) {
     
    }
@@ -18,11 +20,10 @@ export class ITunesComponent implements OnInit {
   }
   search(){
     let term;
-    console.log(this.mediaType);
     term = this.name.replace(" ", "+");
-    this.ItunesService.getArtist(term,this.mediaType).subscribe(data => {
-      console.log(data)
+    let list = this.ItunesService.getByEntity(term,this.mediaType).subscribe(data => {
+      this.results = Object.values(data)[1]; //[0]=devuelve cantidad de datos
+      console.log(this.results);
     });
   }
-
 }
