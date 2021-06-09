@@ -1,25 +1,34 @@
-<h1 class="StyleTittle">iTunes Store</h1>
-<input type ="text" class = "StyleTextInput" [(ngModel)]="name">
-<select class="StyleSelect" [(ngModel)]="mediaType">
-  <option>all</option>
-  <option>movie</option>
-  <option>podcast</option>
-  <option>music</option>
-  <option>musicVideo</option>
-  <option>audiobook</option>
-</select>
-<button (click)="search()" class="StyleButton">Search</button>
+<div class="container">
+  <h1 class="StyleTittle">iTunes Store</h1>
+  <input type="text" class="StyleTextInput" [(ngModel)]="name">
+  <select class="StyleSelect" [(ngModel)]="mediaType">
+    <option>all</option>
+    <option>movie</option>
+    <option>podcast</option>
+    <option>tvShow</option>
+    <option>musicVideo</option>
+    <option>audiobook</option>
+  </select>
+  <button (click)="search()" class="StyleButton">Search</button>
+</div>
+<br>
+<br>
 
-<mat-card class="example-card" *ngFor="let result of results">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{result.collectionName}}</mat-card-title>
-    <mat-card-subtitle>{{result.artistName}}</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src={{result.artworkUrl100}} alt="Photo of a Shiba Inu">
-  <mat-card-content>
-    <p>
-      {{result.collectionPrice}}
-    </p>
-  </mat-card-content>
-</mat-card>
+<div class="container containerStyle">
+  <div class="jumbotron ">
+    <div class="row displayFlexStyle">
+      <div class="col-6" *ngFor="let result of results">
+        <div class="card justify-content-center">
+          <div class="imgBx">
+            <img mat-card-image src={{result.artworkUrl100}}>
+          </div>
+          <div class="card-block  text-center ">
+            <h4>{{result.collectionName}}</h4>
+            <p>{{result.artistName}}</p>
+            <p>{{result.collectionPrice}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

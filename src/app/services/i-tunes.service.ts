@@ -5,33 +5,27 @@ import { Card } from '../models/card';
   providedIn: 'root'
 })
 export class ITunesService {
-  //arreglar para all
   private url : string = "https://itunes.apple.com/search?";
   constructor(private http : HttpClient) { }
 
-    getByEntity(name: string, entity: string){
+    getByEntity(name: string, entity: string) {
     let cardsList: Array<Card> = new Array();
     let list = this.http.get(this.joinUrl(name, entity));
-    list.toPromise().then(data=>{
-      //this.data = Object.values(data)[1];
-    });
     return list;
   }
 
   joinUrl(name: string, entity: string){
     let params = [];
-    params.push('term='+name);
-    params.push('entity='+entity);
-    let url = this.url + params.join('&');
+    let url;
+    if (entity != "all") {
+      params.push('term='+name);
+      params.push('entity='+entity);
+      url = this.url + params.join('&');
+    }
+    else {
+      params.push('term='+name);
+      url = this.url + params;
+    }
     return url;
   }  
-
-  private parse(json: any) {
-    return new Card(
-      json.artworkUrl100,
-      json.artistName,
-      json.trackName,
-      json.collectionPrice
-      );
-  }
 }
